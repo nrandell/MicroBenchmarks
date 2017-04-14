@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DictionaryBenchmarks</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.10.3.0, OS=Microsoft Windows NT 6.2.9200.0
+Processor=Intel(R) Core(TM) i7-6650U CPU 2.20GHz, ProcessorCount=4
+Frequency=2156248 Hz, Resolution=463.7685 ns, Timer=TSC
+  [Host] : Clr 4.0.30319.42000, 64bit RyuJIT-v4.7.2046.0
+  Clr    : Clr 4.0.30319.42000, 64bit RyuJIT-v4.7.2046.0
+  Core   : .NET Core 4.6.25009.03, 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>                 Method</th><th>Job</th><th>Runtime</th><th>Loops</th><th>   Mean</th><th>StdDev</th><th>Gen 0</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>  'Ordinary dictionary'</td><td>Clr</td><td>Clr</td><td>0</td><td>786.1407 ns</td><td>11.9941 ns</td><td>0.1464</td><td>360 B</td>
+</tr><tr><td>'Int ref property dictionary'</td><td>Clr</td><td>Clr</td><td>0</td><td>776.3751 ns</td><td>13.8373 ns</td><td>0.1221</td><td>360 B</td>
+</tr><tr><td>'Int ref field dictionary'</td><td>Clr</td><td>Clr</td><td>0</td><td>777.6840 ns</td><td>14.0899 ns</td><td>0.1469</td><td>360 B</td>
+</tr><tr><td>  'Ordinary dictionary'</td><td>Core</td><td>Core</td><td>0</td><td>785.3151 ns</td><td>20.0312 ns</td><td>0.1453</td><td>359 B</td>
+</tr><tr><td>'Int ref property dictionary'</td><td>Core</td><td>Core</td><td>0</td><td>793.5540 ns</td><td>20.2862 ns</td><td>0.1221</td><td>359 B</td>
+</tr><tr><td>'Int ref field dictionary'</td><td>Core</td><td>Core</td><td>0</td><td>794.3258 ns</td><td>19.4578 ns</td><td>0.1251</td><td>359 B</td>
+</tr><tr><td>  'Ordinary dictionary'</td><td>Clr</td><td>Clr</td><td>1</td><td>856.6958 ns</td><td>17.5889 ns</td><td>0.1849</td><td>496 B</td>
+</tr><tr><td>'Int ref property dictionary'</td><td>Clr</td><td>Clr</td><td>1</td><td>861.9459 ns</td><td>20.5115 ns</td><td>0.1984</td><td>520 B</td>
+</tr><tr><td>'Int ref field dictionary'</td><td>Clr</td><td>Clr</td><td>1</td><td>864.9525 ns</td><td>17.1386 ns</td><td>0.1984</td><td>520 B</td>
+</tr><tr><td>  'Ordinary dictionary'</td><td>Core</td><td>Core</td><td>1</td><td>870.2136 ns</td><td>17.7933 ns</td><td>0.1900</td><td>495 B</td>
+</tr><tr><td>'Int ref property dictionary'</td><td>Core</td><td>Core</td><td>1</td><td>889.2708 ns</td><td>19.7705 ns</td><td>0.1994</td><td>518 B</td>
+</tr><tr><td>'Int ref field dictionary'</td><td>Core</td><td>Core</td><td>1</td><td>895.4966 ns</td><td>18.7791 ns</td><td>0.1994</td><td>518 B</td>
+</tr><tr><td>  'Ordinary dictionary'</td><td>Clr</td><td>Clr</td><td>10</td><td>1,593.5999 ns</td><td>18.4937 ns</td><td>0.5569</td><td>1.27 kB</td>
+</tr><tr><td>'Int ref property dictionary'</td><td>Clr</td><td>Clr</td><td>10</td><td>1,609.3421 ns</td><td>30.5491 ns</td><td>0.6088</td><td>1.46 kB</td>
+</tr><tr><td>'Int ref field dictionary'</td><td>Clr</td><td>Clr</td><td>10</td><td>1,599.8019 ns</td><td>37.8859 ns</td><td>0.6505</td><td>1.46 kB</td>
+</tr><tr><td>  'Ordinary dictionary'</td><td>Core</td><td>Core</td><td>10</td><td>1,704.6638 ns</td><td>45.5370 ns</td><td>0.5112</td><td>1.27 kB</td>
+</tr><tr><td>'Int ref property dictionary'</td><td>Core</td><td>Core</td><td>10</td><td>1,764.4249 ns</td><td>29.0277 ns</td><td>0.6317</td><td>1.51 kB</td>
+</tr><tr><td>'Int ref field dictionary'</td><td>Core</td><td>Core</td><td>10</td><td>1,779.4540 ns</td><td>35.8357 ns</td><td>0.6236</td><td>1.51 kB</td>
+</tr><tr><td>  'Ordinary dictionary'</td><td>Clr</td><td>Clr</td><td>50</td><td>4,277.4241 ns</td><td>80.8535 ns</td><td>0.4283</td><td>1.27 kB</td>
+</tr><tr><td>'Int ref property dictionary'</td><td>Clr</td><td>Clr</td><td>50</td><td>3,350.2470 ns</td><td>78.3491 ns</td><td>0.6114</td><td>1.66 kB</td>
+</tr><tr><td>'Int ref field dictionary'</td><td>Clr</td><td>Clr</td><td>50</td><td>3,317.4557 ns</td><td>96.2434 ns</td><td>0.6032</td><td>1.66 kB</td>
+</tr><tr><td>  'Ordinary dictionary'</td><td>Core</td><td>Core</td><td>50</td><td>5,334.3601 ns</td><td>81.6388 ns</td><td>2.1596</td><td>4.89 kB</td>
+</tr><tr><td>'Int ref property dictionary'</td><td>Core</td><td>Core</td><td>50</td><td>5,496.2621 ns</td><td>114.6393 ns</td><td>2.6744</td><td>5.99 kB</td>
+</tr><tr><td>'Int ref field dictionary'</td><td>Core</td><td>Core</td><td>50</td><td>5,654.4947 ns</td><td>71.2132 ns</td><td>2.6866</td><td>5.99 kB</td>
+</tr></tbody></table>
+</body>
+</html>
